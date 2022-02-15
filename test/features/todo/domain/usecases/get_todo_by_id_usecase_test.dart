@@ -4,7 +4,6 @@ import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/domain/repositories/todo_repository.dart';
 import 'package:todo_list/features/todo/domain/usecases/get_todo_by_id_usecase.dart';
-import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart';
 
 class MockTodoRepository extends Mock implements TodoRepository {}
 

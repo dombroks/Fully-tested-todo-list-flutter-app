@@ -39,9 +39,7 @@ dependencies:
   mockito: ^4.1.1 
   # Local database
   hive: ^1.4.4
-  # Network conectivity
-  connectivity: ^2.0.2
-  # Wrapping API resposes
+  # Wrapping resposes
   dartz: ^0.8.9
 
 dev_dependencies:
