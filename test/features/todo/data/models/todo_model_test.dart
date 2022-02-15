@@ -21,4 +21,14 @@ void main() {
 
     expect(result, equals(tTodoModel));
   });
+
+  test('to json should return a valid json for a TodoModel', () {
+    final result = tTodoModel.toJson();
+
+    expect(result, {
+      "id": 1,
+      "title": "Test todoModel",
+      "content": "This a test todo model"
+    });
+  });
 }

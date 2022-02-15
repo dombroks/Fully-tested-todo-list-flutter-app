@@ -10,4 +10,8 @@ class TodoModel extends Todo {
     return TodoModel(
         id: json['id'], title: json['title'], content: json['content']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {"id": this.id, "title": this.title, "content": this.content};
+  }
 }
