@@ -14,9 +14,14 @@ class DefaulLocalDataSource implements LocalDataSource {
   DefaulLocalDataSource(this.hiveInterface);
 
   @override
-  Future<Result> getTodoById(int id) {
-    // TODO: implement getTodoById
-    throw UnimplementedError();
+  Future<Result> getTodoById(int id) async {
+     try {
+      final todoBox = await hiveInterface.openBox("TodoBox");
+      final todo = await todoBox.get(id);
+      return Result.completed(todo);
+    } catch (e) {
+      return Result.error("an error has beee occured");
+    }
   }
 
   @override

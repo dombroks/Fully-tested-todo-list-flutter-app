@@ -28,4 +28,13 @@ void main() {
 
     verify(mockHiveBox.put(tTodoModel.id, tTodoModel));
   });
+
+  test('getTodoById should return a todo', () async {
+    when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
+
+    final result = await defaulLocalDataSource.getTodoById(tTodoModel.id);
+
+    expect(result.data, tTodoModel);
+    verify(mockHiveBox.get(tTodoModel.id));
+  });
 }
