@@ -17,11 +17,14 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       {this.insertTodoUsecase, this.removeTodoUsecase, this.getTodoByIdUsecase})
       : super(Empty());
 
-
-
   @override
   Stream<TodoState> mapEventToState(TodoEvent event) async* {
-    switch (event) {
+    if (event is InsertTodoEvent) {
+      yield Loaded(insertTodoUsecase(event.todo));
+    } else if (event is GetTodoByIdEvent) {
+      yield Loaded(getTodoByIdUsecase);
+    } else {
+      yield Loaded(removeTodoUsecase);
     }
   }
 }

@@ -12,9 +12,9 @@ class Empty extends TodoState {}
 class Loading extends TodoState {}
 
 class Loaded extends TodoState {
-  final Todo todo;
+  final dynamic result;
 
-  Loaded(this.todo);
+  Loaded(this.result);
   
 
 }

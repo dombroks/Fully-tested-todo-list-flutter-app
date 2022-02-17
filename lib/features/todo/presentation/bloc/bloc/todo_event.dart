@@ -6,3 +6,30 @@ abstract class TodoEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class InsertTodoEvent extends TodoEvent {
+  final Todo todo;
+
+  InsertTodoEvent(this.todo);
+  
+   @override
+  List<Object> get props => [todo];
+}
+
+class RemoveTodoEvent extends TodoEvent {
+  final Todo todo;
+
+  RemoveTodoEvent(this.todo);
+  
+   @override
+  List<Object> get props => [todo];
+}
+
+class GetTodoByIdEvent extends TodoEvent {
+  final int id;
+
+  GetTodoByIdEvent(this.id);
+  
+   @override
+  List<Object> get props => [id];
+}
