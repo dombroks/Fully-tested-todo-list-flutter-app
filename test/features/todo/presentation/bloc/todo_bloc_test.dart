@@ -29,6 +29,10 @@ void main() {
         getTodoByIdUsecase: mockGetTodoByIdUsecase);
   });
 
+  tearDown(() {
+    bloc.close();
+  });
+
   test('the bloc s initial state should be [Empty]', () {
     expect(bloc.state, equals(Empty()));
   });
