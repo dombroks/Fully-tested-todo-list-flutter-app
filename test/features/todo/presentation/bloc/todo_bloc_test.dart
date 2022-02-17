@@ -39,7 +39,7 @@ void main() {
 
   Todo tTodo = Todo(id: 1, title: "title", content: "content");
 
-  test('should return a [Loaded] state when calling insertTodo', () {
+  test('should return a [Loaded] state when calling insertTodoUsecase', () {
     when(mockInsertTodoUsecase(any))
         .thenAnswer((_) async => Result.completed(tTodo.id));
 
@@ -48,7 +48,7 @@ void main() {
     expectLater(bloc.asBroadcastStream(), emitsInOrder([Loaded(tTodo.id)]));
   });
 
-  test('should return a [Loaded] state when calling removeTodo', () {
+  test('should return a [Loaded] state when calling removeTodoUsecase', () {
     when(mockRemoveTodoUsecase(any))
         .thenAnswer((_) async => Result.completed(tTodo.id));
 
@@ -57,12 +57,51 @@ void main() {
     expectLater(bloc.asBroadcastStream(), emitsInOrder([Loaded("")]));
   });
 
-  test('should return a [Loaded] state when calling getTodoById', () {
+  test('should return a [Loaded] state when calling getTodoByIdUsecase', () {
     when(mockGetTodoByIdUsecase(any))
         .thenAnswer((_) async => Result.completed(tTodo.id));
 
     bloc.add(GetTodoByIdEvent(tTodo.id));
 
     expectLater(bloc.asBroadcastStream(), emitsInOrder([Loaded(tTodo)]));
+  });
+
+  test('should insert a todo item when calling insertTodoUsecase', () async {
+    when(mockInsertTodoUsecase(any))
+        .thenAnswer((_) async => Result.completed(tTodo.id));
+
+    bloc.add(InsertTodoEvent(tTodo));
+    await untilCalled(mockInsertTodoUsecase(any));
+
+    verify(mockInsertTodoUsecase(tTodo));
+  });
+
+  test('should get a todo item when calling getTodoByIdUsecase', () async {
+    when(mockGetTodoByIdUsecase(any))
+        .thenAnswer((_) async => Result.completed(tTodo));
+
+    bloc.add(GetTodoByIdEvent(tTodo.id));
+    await untilCalled(mockGetTodoByIdUsecase(any));
+
+    verify(mockGetTodoByIdUsecase(tTodo.id));
+  });
+
+  test('should remove the todo item when calling removeTodoUsecase', () async {
+    when(mockRemoveTodoUsecase(any)).thenAnswer(
+        (_) async => Result.completed("seccessful removing message"));
+
+    bloc.add(RemoveTodoEvent(tTodo));
+    await untilCalled(mockRemoveTodoUsecase(any));
+
+    verify(mockRemoveTodoUsecase(tTodo));
+  });
+
+  test('should emit [Loading, Loaded] when data is gotten', () async {
+    when(mockGetTodoByIdUsecase(any))
+        .thenAnswer((_) async => Result.completed(tTodo));
+
+    bloc.add(GetTodoByIdEvent(tTodo.id));
+
+    expectLater(bloc.asBroadcastStream(), emitsInOrder([Loading(), Loaded(tTodo)]));
   });
 }
