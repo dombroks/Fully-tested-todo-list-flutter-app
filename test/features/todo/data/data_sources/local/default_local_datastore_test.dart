@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mockito/mockito.dart';
+import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/data/data_sources/local/local_data_source.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 
@@ -37,5 +38,16 @@ void main() {
 
     expect(result.data, tTodoModel);
     verify(mockHiveBox.get(tTodoModel.id));
+  });
+
+  test('removeTodo should remove a todo from DB', () async {
+    when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
+    when(mockHiveBox.delete(tTodoModel.id)).thenAnswer(
+        (_) async => Result.completed("Todo has been well removed"));
+
+    final result = await defaulLocalDataSource.removeTodo(tTodoModel);
+
+    expect(result.data, "Todo has been well removed");
+    verify(mockHiveBox.delete(tTodoModel.id));
   });
 }

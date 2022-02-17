@@ -37,8 +37,13 @@ class DefaulLocalDataSource implements LocalDataSource {
   }
 
   @override
-  Future<Result> removeTodo(TodoModel todo) {
-    // TODO: implement removeTodo
-    throw UnimplementedError();
+  Future<Result> removeTodo(TodoModel todo) async {
+    try {
+      final todoBox = await hiveInterface.openBox("TodoBox");
+      await todoBox.delete(todo.id);
+      return Result.completed("Todo has been well removed");
+    } catch (e) {
+      return Result.error("an error has beee occured");
+    }
   }
 }
