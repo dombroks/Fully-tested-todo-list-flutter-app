@@ -15,12 +15,13 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> getTodoById(int id) async {
-     try {
+    try {
       final todoBox = await hiveInterface.openBox("TodoBox");
+
       final todo = await todoBox.get(id);
       return Result.completed(todo);
     } catch (e) {
-      return Result.error("an error has beee occured");
+      return Result.error("an error has beee occured" + e.toString());
     }
   }
 
@@ -28,7 +29,7 @@ class DefaulLocalDataSource implements LocalDataSource {
   Future<Result> insertTodo(TodoModel todo) async {
     try {
       final todoBox = await hiveInterface.openBox("TodoBox");
-      todoBox.put(todo.id, todo);
+      await todoBox.put(todo.id, todo);
       return Result.completed(todo.id);
     } catch (e) {
       return Result.error("an error has beee occured");

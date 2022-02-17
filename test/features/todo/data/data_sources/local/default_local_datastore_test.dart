@@ -31,6 +31,7 @@ void main() {
 
   test('getTodoById should return a todo', () async {
     when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
+    when(mockHiveBox.get(tTodoModel.id)).thenAnswer((_) async => tTodoModel);
 
     final result = await defaulLocalDataSource.getTodoById(tTodoModel.id);
 
