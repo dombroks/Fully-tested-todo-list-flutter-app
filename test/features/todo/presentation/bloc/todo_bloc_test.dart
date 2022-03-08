@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
+import 'package:todo_list/features/todo/domain/usecases/get_all_todos_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/get_todo_by_id_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/insert_todo_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart';
@@ -13,20 +14,25 @@ class MockRemoveTodoUsecase extends Mock implements RemoveTodoUsecase {}
 
 class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
 
+class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
+
 void main() {
   TodoBloc bloc;
   MockInsertTodoUsecase mockInsertTodoUsecase;
   MockRemoveTodoUsecase mockRemoveTodoUsecase;
   MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
+  MockGetAllTodosUsecase mockGetAllTodosUsecase;
 
   setUp(() {
     mockInsertTodoUsecase = MockInsertTodoUsecase();
     mockRemoveTodoUsecase = MockRemoveTodoUsecase();
     mockGetTodoByIdUsecase = MockGetTodoByIdUsecase();
+    mockGetAllTodosUsecase = MockGetAllTodosUsecase();
     bloc = TodoBloc(
         insertTodoUsecase: mockInsertTodoUsecase,
         removeTodoUsecase: mockRemoveTodoUsecase,
-        getTodoByIdUsecase: mockGetTodoByIdUsecase);
+        getTodoByIdUsecase: mockGetTodoByIdUsecase,
+        getAllTodosUsecase: mockGetAllTodosUsecase);
   });
 
   tearDown(() {
@@ -102,6 +108,21 @@ void main() {
 
     bloc.add(GetTodoByIdEvent(tTodo.id));
 
-    expectLater(bloc.asBroadcastStream(), emitsInOrder([Loading(), Loaded(tTodo)]));
+    expectLater(
+        bloc.asBroadcastStream(), emitsInOrder([Loading(), Loaded(tTodo)]));
+  });
+
+  test('should get all the todos when calling getAllTodosUsecase', () async {
+    List<Todo> todos = [
+      Todo(id: 1, title: "title", content: "content"),
+      Todo(id: 1, title: "title", content: "content")
+    ];
+    when(mockGetAllTodosUsecase())
+        .thenAnswer((_) async => Result.completed(todos));
+
+    bloc.add(GetAllTodosEvent());
+    await untilCalled(mockGetAllTodosUsecase());
+
+    verify(mockGetAllTodosUsecase());
   });
 }

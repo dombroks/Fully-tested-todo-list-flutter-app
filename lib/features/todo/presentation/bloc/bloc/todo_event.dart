@@ -33,3 +33,12 @@ class GetTodoByIdEvent extends TodoEvent {
    @override
   List<Object> get props => [id];
 }
+
+class GetAllTodosEvent extends TodoEvent {
+
+  GetAllTodosEvent();
+  
+   @override
+  List<Object> get props => [];
+}
+

@@ -21,4 +21,9 @@ class DefaultTodoRepository implements TodoRepository {
   Future<Result> removeTodo(Todo todo) {
     return localDataSource.removeTodo(todo);
   }
+
+  @override
+  Future<Result> getAllTodos() {
+    return localDataSource.getAllTodos();
+  }
 }

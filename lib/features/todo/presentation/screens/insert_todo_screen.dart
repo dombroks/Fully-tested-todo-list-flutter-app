@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
+import 'package:todo_list/features/todo/presentation/screens/Todos_screen.dart';
 
 class InsertTodoScreen extends StatefulWidget {
   const InsertTodoScreen({Key key}) : super(key: key);
@@ -28,6 +29,14 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Todo"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TodosScreen()));
+              })
+        ],
       ),
       body: Container(
         width: screenSize.width,
@@ -63,12 +72,10 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
             SizedBox(height: 10),
             FlatButton(
               onPressed: () {
-                TodoModel todo = TodoModel(
-                    id: 1,
-                    title: "titleController.text",
-                    content: "contentController.text");
-                InsertTodoEvent event = InsertTodoEvent(todo);
-                BlocProvider.of<TodoBloc>(context).add(event);
+                TodoModel todo =
+                    TodoModel(id: 1, title: "text", content: "est.sgqtext");
+
+                BlocProvider.of<TodoBloc>(context).add(InsertTodoEvent(todo));
               },
               child: Container(
                 color: Colors.blue,

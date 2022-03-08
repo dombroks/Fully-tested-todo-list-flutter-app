@@ -51,4 +51,19 @@ void main() {
     verify(mockLocalDataSource.insertTodo(tTodoModel));
     verifyNoMoreInteractions(mockLocalDataSource);
   });
+
+   test('getAllTodos should return all the records', () async {
+      List<TodoModel> todos = [
+      TodoModel(id: 1, title: "title", content: "content"),
+      TodoModel(id: 1, title: "title", content: "content")
+    ];
+    when(mockLocalDataSource.getAllTodos())
+        .thenAnswer((_) async => Result.completed(todos));
+
+    final result = await defaultTodoRepository.getAllTodos();
+
+    expect(result.data, todos);
+    verify(mockLocalDataSource.getAllTodos());
+    verifyNoMoreInteractions(mockLocalDataSource);
+  });
 }

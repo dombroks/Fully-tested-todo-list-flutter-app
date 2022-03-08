@@ -6,12 +6,15 @@ abstract class LocalDataSource {
   Future<Result> getTodoById(int id);
   Future<Result> insertTodo(TodoModel todo);
   Future<Result> removeTodo(TodoModel todo);
+  Future<Result> getAllTodos();
 }
 
 class DefaulLocalDataSource implements LocalDataSource {
   final HiveInterface hiveInterface;
 
   DefaulLocalDataSource(this.hiveInterface);
+
+  
 
   @override
   Future<Result> getTodoById(int id) async {
@@ -44,6 +47,19 @@ class DefaulLocalDataSource implements LocalDataSource {
       return Result.completed("Todo has been well removed");
     } catch (e) {
       return Result.error("an error has beee occured");
+    }
+  }
+
+  @override
+  Future<Result> getAllTodos() async {
+    try {
+      final todoBox = await hiveInterface.openBox("TodoBox");
+      final todos = todoBox.keys.toList();
+      print(todos);
+
+      return Result.completed(todos);
+    } catch (e) {
+      return Result.error("there are no records in this box");
     }
   }
 }

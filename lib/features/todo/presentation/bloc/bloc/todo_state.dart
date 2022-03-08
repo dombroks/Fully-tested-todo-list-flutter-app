@@ -15,14 +15,10 @@ class Loaded extends TodoState {
   final dynamic result;
 
   Loaded(this.result);
-  
-
 }
 
 class Error extends TodoState {
   final String errorMessage;
 
   Error(this.errorMessage);
-  
-  
 }

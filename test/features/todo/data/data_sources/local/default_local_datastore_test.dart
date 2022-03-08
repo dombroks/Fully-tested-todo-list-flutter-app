@@ -53,10 +53,12 @@ void main() {
   });
 
   test('getAllTodos should get all the inserted todos from DB', () async {
-    List<TodoModel> todos = [TodoModel(id: 1, title: "title", content: "content"),TodoModel(id: 1, title: "title", content: "content")];
+    List<TodoModel> todos = [
+      TodoModel(id: 1, title: "title", content: "content"),
+      TodoModel(id: 1, title: "title", content: "content")
+    ];
     when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
-    when(mockHiveBox.values.).thenAnswer(
-        (_) async => Result.completed(todos));
+    when(mockHiveBox.values).thenReturn(todos);
 
     final result = await defaulLocalDataSource.removeTodo(tTodoModel);
 
