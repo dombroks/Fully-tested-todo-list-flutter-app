@@ -39,6 +39,8 @@ dependencies:
   mockito: ^4.1.1+1 
   # Local database
   hive: ^1.4.4+1
+  # Path provider
+  path_provider: ^1.3.0
   
   
 

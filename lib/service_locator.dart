@@ -6,7 +6,7 @@ import 'package:todo_list/features/todo/domain/usecases/get_todo_by_id_usecase.d
 import 'package:todo_list/features/todo/domain/usecases/insert_todo_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart';
 import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
-
+import 'package:path_provider/path_provider.dart';
 import 'features/todo/data/repositories/default_todo_repository.dart';
 
 final serviceLocator = GetIt.instance;
@@ -16,7 +16,15 @@ void init() {
       getTodoByIdUsecase: serviceLocator(),
       removeTodoUsecase: serviceLocator(),
       insertTodoUsecase: serviceLocator()));
+// DB
+  serviceLocator.registerSingletonAsync<HiveInterface>(() async {
+    final HiveInterface hive = Hive;
+    final path = (await getApplicationDocumentsDirectory()).path;
 
+    hive.init(path);
+
+    return hive;
+  });
   // Usecases
   serviceLocator
       .registerLazySingleton(() => GetTodoByIdUsecase(serviceLocator()));
@@ -32,8 +40,4 @@ void init() {
   // Data sources
   serviceLocator.registerLazySingleton<LocalDataSource>(
       () => DefaulLocalDataSource(serviceLocator()));
-
-  // DB
-  serviceLocator.registerLazySingleton<HiveInterface>(
-      () => Hive);
 }

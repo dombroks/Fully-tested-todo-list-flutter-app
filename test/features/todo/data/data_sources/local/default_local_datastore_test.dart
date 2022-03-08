@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/data/data_sources/local/local_data_source.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
+import 'package:todo_list/features/todo/domain/entities/todo.dart';
 
 class MockHive extends Mock implements HiveInterface {}
 
@@ -44,6 +45,18 @@ void main() {
     when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
     when(mockHiveBox.delete(tTodoModel.id)).thenAnswer(
         (_) async => Result.completed("Todo has been well removed"));
+
+    final result = await defaulLocalDataSource.removeTodo(tTodoModel);
+
+    expect(result.data, "Todo has been well removed");
+    verify(mockHiveBox.delete(tTodoModel.id));
+  });
+
+  test('getAllTodos should get all the inserted todos from DB', () async {
+    List<TodoModel> todos = [TodoModel(id: 1, title: "title", content: "content"),TodoModel(id: 1, title: "title", content: "content")];
+    when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
+    when(mockHiveBox.values.).thenAnswer(
+        (_) async => Result.completed(todos));
 
     final result = await defaulLocalDataSource.removeTodo(tTodoModel);
 
