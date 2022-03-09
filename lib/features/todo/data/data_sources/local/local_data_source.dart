@@ -16,7 +16,6 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> getTodoById(int id) async {
-    print(hiveInterface.box("TodoBox").isEmpty);
     await hiveInterface.openBox("TodoBox");
     final todoBox = hiveInterface.box("TodoBox");
     final todo = await todoBox.get(id);
@@ -44,13 +43,10 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> getAllTodos() async {
-    try {
-      final todoBox = hiveInterface.box("TodoBox");
-      final todos = todoBox.values.toList();
+    await hiveInterface.openBox("TodoBox");
+    final todoBox = hiveInterface.box("TodoBox");
+    final todos = todoBox.values.toList();
 
-      return Result.completed(todos);
-    } catch (e) {
-      return Result.error("there are no records in this box");
-    }
+    return Result.completed(todos);
   }
 }

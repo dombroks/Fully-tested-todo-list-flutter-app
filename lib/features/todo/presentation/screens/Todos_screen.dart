@@ -18,7 +18,7 @@ class _TodosScreenState extends State<TodosScreen> {
 
   @override
   void initState() {
-    BlocProvider.of<TodoBloc>(context).add(GetTodoByIdEvent(1));
+    BlocProvider.of<TodoBloc>(context).add(GetAllTodosEvent());
     super.initState();
   }
 
@@ -36,7 +36,12 @@ class _TodosScreenState extends State<TodosScreen> {
         child: BlocBuilder<TodoBloc, TodoState>(
           builder: (context, state) {
             if (state is Loaded)
-              return Center(child: Text(state.result.toString()));
+              return Center(
+                  child: ListView.builder(
+                      itemCount: state.result.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return Text(state.result[index].title);
+                      }));
             else if (state is Loading)
               return Text("Loading..");
             else

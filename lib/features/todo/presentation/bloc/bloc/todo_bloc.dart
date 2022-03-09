@@ -25,11 +25,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   @override
   Stream<TodoState> mapEventToState(TodoEvent event) async* {
     if (event is InsertTodoEvent) {
-      final data = await insertTodoUsecase(event.todo);
-      if (data.data is String)
-        yield Error(data.data);
-      else
-        yield Loaded(data.data);
+      await insertTodoUsecase(event.todo);
     } else if (event is GetTodoByIdEvent) {
       final data = await getTodoByIdUsecase(event.id);
       if (data.data is String)
