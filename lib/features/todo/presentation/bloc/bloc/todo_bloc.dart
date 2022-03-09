@@ -29,13 +29,12 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       if (data.data is String)
         yield Error(data.data);
       else
-        yield Loaded(insertTodoUsecase(event.todo));
+        yield Loaded(data.data);
     } else if (event is GetTodoByIdEvent) {
       final data = await getTodoByIdUsecase(event.id);
       if (data.data is String)
         yield Error(data.data);
       else {
-        yield Loading();
         yield Loaded(data.data);
       }
     } else if (event is RemoveTodoEvent) {
@@ -49,7 +48,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       if (data.data is String)
         yield Error(data.data);
       else
-        yield Loaded(data);
+        yield Loaded(data.data);
     }
   }
 }

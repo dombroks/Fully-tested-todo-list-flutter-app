@@ -6,7 +6,9 @@ class GetTodoByIdUsecase {
 
   GetTodoByIdUsecase(this.todoRepository);
 
-  Future<Result> call(int id) async{
-    return await todoRepository.getTodoById(id);
+  Future<Result> call(int id) async {
+    final data = await todoRepository.getTodoById(id);
+    print(data.toString());
+    return data;
   }
 }

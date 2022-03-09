@@ -72,6 +72,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
             SizedBox(height: 10),
             FlatButton(
               onPressed: () {
+                print("button has been pressed");
                 TodoModel todo =
                     TodoModel(id: 1, title: "text", content: "est.sgqtext");
 

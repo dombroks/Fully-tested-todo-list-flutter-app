@@ -20,7 +20,8 @@ Future<void> init() async {
   sl.registerLazySingleton<HiveInterface>(() {
     final HiveInterface hive = Hive;
     hive.init(directory.path);
-    
+    hive.registerAdapter(TodoAdapter());
+
     return hive;
   });
 

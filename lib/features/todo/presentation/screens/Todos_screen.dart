@@ -18,14 +18,13 @@ class _TodosScreenState extends State<TodosScreen> {
 
   @override
   void initState() {
+    BlocProvider.of<TodoBloc>(context).add(GetTodoByIdEvent(1));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    
-    BlocProvider.of<TodoBloc>(context).add(GetAllTodosEvent());
 
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +36,7 @@ class _TodosScreenState extends State<TodosScreen> {
         child: BlocBuilder<TodoBloc, TodoState>(
           builder: (context, state) {
             if (state is Loaded)
-              return Center(child: Text(state.result.data[0].title.toString()));
+              return Center(child: Text(state.result.toString()));
             else if (state is Loading)
               return Text("Loading..");
             else
