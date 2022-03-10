@@ -34,11 +34,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         yield Loaded(data.data);
       }
     } else if (event is RemoveTodoEvent) {
-      final data = await removeTodoUsecase(event.todo);
-      if (data.data is String)
-        yield Error(data.data);
-      else
-        yield Loaded(data);
+      await removeTodoUsecase(event.todo);
     } else if (event is GetAllTodosEvent) {
       final data = await getAllTodosUsecase();
       if (data.data is String)

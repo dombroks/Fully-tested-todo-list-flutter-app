@@ -32,13 +32,10 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> removeTodo(TodoModel todo) async {
-    try {
-      final todoBox = hiveInterface.box("TodoBox");
-      await todoBox.delete(todo.id);
-      return Result.completed("Todo has been well removed");
-    } catch (e) {
-      return Result.error("an error has beee occured");
-    }
+    await hiveInterface.openBox("TodoBox");
+    final todoBox = hiveInterface.box("TodoBox");
+    await todoBox.delete(todo.id);
+    return Result.completed("Todo has been well removed");
   }
 
   @override

@@ -45,7 +45,7 @@ class _TodosScreenState extends State<TodosScreen> {
                         itemBuilder: (BuildContext context, index) {
                           return Center(
                               child: TodoWidget(
-                            title: state.result[index].title,
+                            todo: state.result[index],
                           ));
                         })),
               );

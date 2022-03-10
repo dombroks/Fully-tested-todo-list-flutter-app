@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_list/features/todo/data/models/TodoModel.dart';
+import 'package:todo_list/features/todo/domain/entities/todo.dart';
+import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
 
 class TodoWidget extends StatelessWidget {
-  final String title;
-  const TodoWidget({Key key, this.title}) : super(key: key);
+  final Todo todo;
+  const TodoWidget({Key key, this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class TodoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    title,
+                    todo.title,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   IconButton(
@@ -27,7 +31,13 @@ class TodoWidget extends StatelessWidget {
                         size: 20,
                         color: Colors.grey,
                       ),
-                      onPressed: () {})
+                      onPressed: () {
+                        BlocProvider.of<TodoBloc>(context).add(RemoveTodoEvent(
+                            TodoModel(
+                                id: todo.id,
+                                title: todo.title,
+                                content: todo.content)));
+                      })
                 ],
               )
             ],
