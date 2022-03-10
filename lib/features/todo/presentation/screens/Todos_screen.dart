@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
+import 'package:todo_list/features/todo/presentation/components/todo_widget.dart';
 
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key key}) : super(key: key);
@@ -36,12 +37,18 @@ class _TodosScreenState extends State<TodosScreen> {
         child: BlocBuilder<TodoBloc, TodoState>(
           builder: (context, state) {
             if (state is Loaded)
-              return Center(
-                  child: ListView.builder(
-                      itemCount: state.result.length,
-                      itemBuilder: (BuildContext context, index) {
-                        return Center(child: Text(state.result[index].title));
-                      }));
+              return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                    child: ListView.builder(
+                        itemCount: state.result.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return Center(
+                              child: TodoWidget(
+                            title: state.result[index].title,
+                          ));
+                        })),
+              );
             else if (state is Loading)
               return Text("Loading..");
             else
