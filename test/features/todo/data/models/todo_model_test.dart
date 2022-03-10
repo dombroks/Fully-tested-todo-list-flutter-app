@@ -8,7 +8,7 @@ import '../../../../fixtures/utils.dart';
 
 void main() {
   final tTodoModel = TodoModel(
-      id: 1, title: "Test todoModel", content: "This a test todo model");
+      id: "1", title: "Test todoModel", content: "This a test todo model");
 
   test('should be a subclass of Todo', () {
     expect(tTodoModel, isA<Todo>());

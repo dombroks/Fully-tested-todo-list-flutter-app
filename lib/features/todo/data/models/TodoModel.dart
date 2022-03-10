@@ -3,7 +3,7 @@ import 'package:todo_list/features/todo/domain/entities/todo.dart';
 
 class TodoModel extends Todo {
   TodoModel(
-      {@required int id, @required String title, @required String content})
+      {@required String id, @required String title, @required String content})
       : super(id: id, title: title, content: content);
 
   factory TodoModel.fromJson(Map<String, dynamic> json) {

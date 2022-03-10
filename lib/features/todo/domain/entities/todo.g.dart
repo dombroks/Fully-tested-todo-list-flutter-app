@@ -14,7 +14,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Todo(
-      id: fields[0] as int,
+      id: fields[0] as String,
       title: fields[1] as String,
       content: fields[2] as String,
     );
@@ -33,7 +33,6 @@ class TodoAdapter extends TypeAdapter<Todo> {
   }
 
   @override
-  int get typeId =>  1;
-
-  
+  // TODO: implement typeId
+  int get typeId => 1;
 }

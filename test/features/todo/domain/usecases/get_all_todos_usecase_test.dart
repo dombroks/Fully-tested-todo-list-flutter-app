@@ -17,8 +17,8 @@ void main() {
   });
 
   List<TodoModel> todos = [
-      TodoModel(id: 1, title: "title", content: "content"),
-      TodoModel(id: 1, title: "title", content: "content")
+      TodoModel(id: "1", title: "title", content: "content"),
+      TodoModel(id: "1", title: "title", content: "content")
     ];
 
   test('should get all the todos from repository', () async {

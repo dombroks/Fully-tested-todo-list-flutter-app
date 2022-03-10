@@ -26,7 +26,7 @@ class RemoveTodoEvent extends TodoEvent {
 }
 
 class GetTodoByIdEvent extends TodoEvent {
-  final int id;
+  final String id;
 
   GetTodoByIdEvent(this.id);
   

@@ -8,7 +8,7 @@ class DefaultTodoRepository implements TodoRepository {
 
   DefaultTodoRepository(this.localDataSource);
   @override
-  Future<Result> getTodoById(int id) {
+  Future<Result> getTodoById(String id) {
     return localDataSource.getTodoById(id);
   }
 

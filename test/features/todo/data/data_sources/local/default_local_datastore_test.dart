@@ -21,7 +21,7 @@ void main() {
     defaulLocalDataSource = DefaulLocalDataSource(mockHive);
   });
 
-  TodoModel tTodoModel = TodoModel(id: 1, title: "title", content: "content");
+  TodoModel tTodoModel = TodoModel(id: "1", title: "title", content: "content");
 
   test('insertTodo should save todo on Local DB', () async {
     when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
@@ -54,8 +54,8 @@ void main() {
 
   test('getAllTodos should get all the inserted todos from DB', () async {
     List<TodoModel> todos = [
-      TodoModel(id: 1, title: "title", content: "content"),
-      TodoModel(id: 1, title: "title", content: "content")
+      TodoModel(id: "1", title: "title", content: "content"),
+      TodoModel(id: "1", title: "title", content: "content")
     ];
     when(mockHive.openBox(any)).thenAnswer((_) async => mockHiveBox);
     when(mockHiveBox.values).thenReturn(todos);

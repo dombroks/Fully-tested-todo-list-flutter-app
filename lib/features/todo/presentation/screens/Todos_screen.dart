@@ -40,7 +40,7 @@ class _TodosScreenState extends State<TodosScreen> {
                   child: ListView.builder(
                       itemCount: state.result.length,
                       itemBuilder: (BuildContext context, index) {
-                        return Text(state.result[index].title);
+                        return Center(child: Text(state.result[index].title));
                       }));
             else if (state is Loading)
               return Text("Loading..");

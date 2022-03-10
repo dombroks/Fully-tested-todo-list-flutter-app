@@ -4,6 +4,7 @@ import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
 import 'package:todo_list/features/todo/presentation/screens/Todos_screen.dart';
+import 'package:uuid/uuid.dart';
 
 class InsertTodoScreen extends StatefulWidget {
   const InsertTodoScreen({Key key}) : super(key: key);
@@ -72,8 +73,10 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
             SizedBox(height: 10),
             FlatButton(
               onPressed: () {
-                TodoModel todo =
-                    TodoModel(id: 2, title: "te", content: "est.sgqtext");
+                TodoModel todo = TodoModel(
+                    id: Uuid().v1(),
+                    title: titleController.text ?? "Empty title",
+                    content: contentController.text ?? "Empty content");
 
                 BlocProvider.of<TodoBloc>(context).add(InsertTodoEvent(todo));
               },

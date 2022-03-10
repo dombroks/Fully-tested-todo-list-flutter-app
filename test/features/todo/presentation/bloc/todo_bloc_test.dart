@@ -43,7 +43,7 @@ void main() {
     expect(bloc.state, equals(Empty()));
   });
 
-  Todo tTodo = Todo(id: 1, title: "title", content: "content");
+  Todo tTodo = Todo(id: "1", title: "title", content: "content");
 
   test('should return a [Loaded] state when calling insertTodoUsecase', () {
     when(mockInsertTodoUsecase(any))
@@ -114,8 +114,8 @@ void main() {
 
   test('should get all the todos when calling getAllTodosUsecase', () async {
     List<Todo> todos = [
-      Todo(id: 1, title: "title", content: "content"),
-      Todo(id: 1, title: "title", content: "content")
+      Todo(id: "1", title: "title", content: "content"),
+      Todo(id: "1", title: "title", content: "content")
     ];
     when(mockGetAllTodosUsecase())
         .thenAnswer((_) async => Result.completed(todos));

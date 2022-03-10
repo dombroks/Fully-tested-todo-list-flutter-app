@@ -17,7 +17,7 @@ void main() {
   });
 
   final todoItem =
-      Todo(id: 1, title: "test todo", content: "This is a test todo");
+      Todo(id: "1", title: "test todo", content: "This is a test todo");
 
   test('should remove the todo item from repository', () async {
     when(mockTodoRepository.removeTodo(todoItem))

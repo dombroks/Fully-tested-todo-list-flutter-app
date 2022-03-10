@@ -16,7 +16,7 @@ void main() {
     getTodoByIdUsecase = GetTodoByIdUsecase(mockTodoRepository);
   });
 
-  final todoId = 1;
+  final todoId = "1";
   final todoItem =
       Todo(id: todoId, title: "test todo", content: "This is a test todo");
 

@@ -17,16 +17,16 @@ void main() {
   });
 
   final TodoModel tTodoModel = TodoModel(
-      id: 1, title: "this is a test title", content: "this is a test content");
+      id: "1", title: "this is a test title", content: "this is a test content");
 
   test('getTodoById should return a model', () async {
-    when(mockLocalDataSource.getTodoById(1))
+    when(mockLocalDataSource.getTodoById("1"))
         .thenAnswer((_) async => Result.completed(tTodoModel));
 
-    final result = await defaultTodoRepository.getTodoById(1);
+    final result = await defaultTodoRepository.getTodoById("1");
 
     expect(result.data, tTodoModel);
-    verify(mockLocalDataSource.getTodoById(1));
+    verify(mockLocalDataSource.getTodoById("1"));
     verifyNoMoreInteractions(mockLocalDataSource);
   });
 
@@ -54,8 +54,8 @@ void main() {
 
    test('getAllTodos should return all the records', () async {
       List<TodoModel> todos = [
-      TodoModel(id: 1, title: "title", content: "content"),
-      TodoModel(id: 1, title: "title", content: "content")
+      TodoModel(id: "1", title: "title", content: "content"),
+      TodoModel(id: "1", title: "title", content: "content")
     ];
     when(mockLocalDataSource.getAllTodos())
         .thenAnswer((_) async => Result.completed(todos));

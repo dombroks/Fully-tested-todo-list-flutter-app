@@ -3,7 +3,7 @@ import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 
 abstract class LocalDataSource {
-  Future<Result> getTodoById(int id);
+  Future<Result> getTodoById(String id);
   Future<Result> insertTodo(TodoModel todo);
   Future<Result> removeTodo(TodoModel todo);
   Future<Result> getAllTodos();
@@ -15,7 +15,7 @@ class DefaulLocalDataSource implements LocalDataSource {
   DefaulLocalDataSource(this.hiveInterface);
 
   @override
-  Future<Result> getTodoById(int id) async {
+  Future<Result> getTodoById(String id) async {
     await hiveInterface.openBox("TodoBox");
     final todoBox = hiveInterface.box("TodoBox");
     final todo = await todoBox.get(id);
