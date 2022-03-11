@@ -20,7 +20,7 @@ class TodoChangeNotifier extends ChangeNotifier {
   List<Todo> _todos = [];
   List<Todo> get todos => _todos;
 
-  Future<void> getTodos() async {
+  Future<void> getAllTodos() async {
     var data = await getAllTodosUsecase();
     _todos.clear();
     _todos.addAll(data.data);

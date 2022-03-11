@@ -18,7 +18,7 @@ class _TodosScreenState extends State<TodosScreen> {
 
   @override
   void initState() {
-    Provider.of<TodoChangeNotifier>(context, listen: false).getTodos();
+    Provider.of<TodoChangeNotifier>(context, listen: false).getAllTodos();
     super.initState();
   }
 
