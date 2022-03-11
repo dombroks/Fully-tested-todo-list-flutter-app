@@ -35,6 +35,7 @@ dependencies:
   flutter_bloc: ^6.1.3
   # Value equality
   equatable: ^1.2.6
+  
   # Mocking library
   mockito: ^4.1.1
   # Local database
