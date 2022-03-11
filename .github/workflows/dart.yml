@@ -43,5 +43,5 @@ jobs:
       - name: Flutter action
       # You may pin to the exact commit or the version.
       # uses: subosito/flutter-action@5e1529bc12adae5b26f30f0a4046ac743d6f0c5d
-      - uses: subosito/flutter-action@v2.3.0
+        uses: subosito/flutter-action@v2.3.0
         
