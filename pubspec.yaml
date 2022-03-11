@@ -36,8 +36,7 @@ dependencies:
   # Value equality
   equatable: ^1.2.6
 
-  # Mocking library
-  mockito: ^4.1.1+1
+  
   # Local database
   hive: ^1.4.4+1
   hive_generator: ^0.5.0
@@ -53,6 +52,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Mocking library
+  mockito: ^4.0.0
  
 
 # For information on the generic Dart part of this file, see the
