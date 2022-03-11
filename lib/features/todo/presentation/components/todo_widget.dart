@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
-import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
 import 'package:todo_list/features/todo/presentation/screens/todo_screen.dart';
 
 class TodoWidget extends StatelessWidget {
@@ -41,13 +38,7 @@ class TodoWidget extends StatelessWidget {
                           size: 20,
                           color: Colors.grey,
                         ),
-                        onPressed: () {
-                          BlocProvider.of<TodoBloc>(context).add(
-                              RemoveTodoEvent(TodoModel(
-                                  id: todo.id,
-                                  title: todo.title,
-                                  content: todo.content)));
-                        })
+                        onPressed: () {})
                   ],
                 )
               ],

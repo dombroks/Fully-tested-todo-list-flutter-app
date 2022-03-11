@@ -8,7 +8,6 @@ class GetAllTodosUsecase {
 
   Future<Result> call() async {
     final data = await todoRepository.getAllTodos();
-    print(data.toString());
     return data;
   }
 }

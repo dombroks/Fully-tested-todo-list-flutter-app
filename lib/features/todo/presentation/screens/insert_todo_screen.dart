@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
-import 'package:todo_list/features/todo/domain/entities/todo.dart';
-import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
-import 'package:todo_list/features/todo/presentation/screens/Todos_screen.dart';
+import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
+import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 import 'package:uuid/uuid.dart';
 
 class InsertTodoScreen extends StatefulWidget {
@@ -27,6 +26,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    var changeNotifier = Provider.of<TodoChangeNotifier>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Todo"),
@@ -43,7 +43,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
         width: screenSize.width,
         height: screenSize.height,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 15,
@@ -72,13 +72,12 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
             ),
             SizedBox(height: 10),
             FlatButton(
-              onPressed: () {
+              onPressed: () async {
                 TodoModel todo = TodoModel(
                     id: Uuid().v1(),
                     title: titleController.text ?? "Empty title",
                     content: contentController.text ?? "Empty content");
-
-                BlocProvider.of<TodoBloc>(context).add(InsertTodoEvent(todo));
+                changeNotifier.insertTodo(todo);
               },
               child: Container(
                 color: Colors.blue,

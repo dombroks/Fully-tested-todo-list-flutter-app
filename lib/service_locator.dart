@@ -9,7 +9,7 @@ import 'package:todo_list/features/todo/domain/usecases/get_all_todos_usecase.da
 import 'package:todo_list/features/todo/domain/usecases/get_todo_by_id_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/insert_todo_usecase.dart';
 import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart';
-import 'package:todo_list/features/todo/presentation/bloc/bloc/todo_bloc.dart';
+import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'features/todo/data/repositories/default_todo_repository.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
@@ -25,12 +25,14 @@ Future<void> init() async {
     return hive;
   });
 
-// Bloc
-  sl.registerFactory(() => TodoBloc(
+  //Change notifier
+  sl.registerFactory(() => TodoChangeNotifier(
       getTodoByIdUsecase: sl(),
       removeTodoUsecase: sl(),
       insertTodoUsecase: sl(),
       getAllTodosUsecase: sl()));
+
+
 
   // Data sources
   sl.registerLazySingleton<LocalDataSource>(() => DefaulLocalDataSource(sl()));
