@@ -4,7 +4,6 @@ import 'package:mockito/mockito.dart';
 import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/data/data_sources/local/local_data_source.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
-import 'package:todo_list/features/todo/domain/entities/todo.dart';
 
 class MockHive extends Mock implements HiveInterface {}
 

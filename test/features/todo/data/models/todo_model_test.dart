@@ -26,7 +26,7 @@ void main() {
     final result = tTodoModel.toJson();
 
     expect(result, {
-      "id": 1,
+      "id": "1",
       "title": "Test todoModel",
       "content": "This a test todo model"
     });

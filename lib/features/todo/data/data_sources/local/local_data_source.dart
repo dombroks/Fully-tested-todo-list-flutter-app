@@ -17,32 +17,31 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> getTodoById(String id) async {
-    await hiveInterface.openBox("TodoBox");
-    final todoBox = hiveInterface.box("TodoBox");
+    final todoBox = await hiveInterface.openBox("TodoBox");
+
     final todo = await todoBox.get(id);
     return Result.completed(todo as Todo);
   }
 
   @override
   Future<Result> insertTodo(TodoModel todo) async {
-    await hiveInterface.openBox("TodoBox");
-    final todoBox = hiveInterface.box("TodoBox");
+    final todoBox = await hiveInterface.openBox("TodoBox");
     todoBox.put(todo.id, todo);
     return Result.completed(todo.id);
   }
 
   @override
   Future<Result> removeTodo(TodoModel todo) async {
-    await hiveInterface.openBox("TodoBox");
-    final todoBox = hiveInterface.box("TodoBox");
+    final todoBox = await hiveInterface.openBox("TodoBox");
+
     await todoBox.delete(todo.id);
     return Result.completed("Todo has been well removed");
   }
 
   @override
   Future<Result> getAllTodos() async {
-    await hiveInterface.openBox("TodoBox");
-    final todoBox = hiveInterface.box("TodoBox");
+    final todoBox = await hiveInterface.openBox("TodoBox");
+
     final todos = todoBox.values.toList().cast<Todo>();
 
     return Result.completed(todos);
