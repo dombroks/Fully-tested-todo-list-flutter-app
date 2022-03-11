@@ -36,7 +36,7 @@ dependencies:
   # Value equality
   equatable: ^1.2.6
   # Mocking library
-  mockito: ^4.1.1+1 
+  mockito: ^4.1.1
   # Local database
   hive: ^1.4.4+1
   hive_generator: ^0.5.0
