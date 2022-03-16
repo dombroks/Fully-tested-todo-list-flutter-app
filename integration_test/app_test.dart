@@ -53,7 +53,7 @@ void main() {
     await tester.pump();
     when(mockGetAllTodosUsecase()).thenAnswer((_) async =>
         Result.completed([Todo(id: "1", title: "title", content: "content")]));
-    await tester.tap(find.byIcon(Icons.add));
+    await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();
     expect(find.byType(InsertTodoScreen), findsNothing);
     expect(find.byType(TodosScreen), findsOneWidget);

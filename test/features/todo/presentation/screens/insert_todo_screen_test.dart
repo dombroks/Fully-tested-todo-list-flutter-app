@@ -20,9 +20,9 @@ void main() {
     expect(find.text("Add Todo"), findsOneWidget);
   });
 
-  testWidgets("appBar's add icon is displayed", (WidgetTester tester) async {
+  testWidgets("appBar's menu icon is displayed", (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
-    expect(find.byIcon(Icons.add), findsOneWidget);
+    expect(find.byIcon(Icons.menu), findsOneWidget);
   });
 
   testWidgets("the two TextFields are displayed", (WidgetTester tester) async {
@@ -37,11 +37,5 @@ void main() {
     expect(find.text("Add"), findsOneWidget);
   });
 
-  testWidgets("bla bla", (WidgetTester tester) async {
-    await tester.pumpWidget(createWidgetUnderTest());
-    await tester.pump();
-    await tester.tap(find.byKey(Key("ADD BUTTON KEY")));
-    await tester.pumpAndSettle();
-    expect(find.byKey(Key("ADD BUTTON KEY")), findsOneWidget);
-  });
+  
 }

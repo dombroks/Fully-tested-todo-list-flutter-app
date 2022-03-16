@@ -36,7 +36,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
         title: Text("Add Todo"),
         actions: [
           IconButton(
-              icon: Icon(Icons.add),
+              icon: Icon(Icons.menu),
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => TodosScreen()));
