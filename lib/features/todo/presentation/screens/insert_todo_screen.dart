@@ -5,6 +5,8 @@ import 'package:todo_list/features/todo/presentation/change_notifiers/todo_chang
 import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 import 'package:uuid/uuid.dart';
 
+const String addButtonKey = "ADD BUTTON KEY";
+
 class InsertTodoScreen extends StatefulWidget {
   const InsertTodoScreen({Key key}) : super(key: key);
 
@@ -80,6 +82,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
                 changeNotifier.insertTodo(todo);
               },
               child: Container(
+                key: Key(addButtonKey),
                 color: Colors.blue,
                 height: 50,
                 child: Center(
