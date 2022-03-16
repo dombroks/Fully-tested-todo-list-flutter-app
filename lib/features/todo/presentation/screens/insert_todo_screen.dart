@@ -6,6 +6,8 @@ import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 import 'package:uuid/uuid.dart';
 
 const String addButtonKey = "ADD BUTTON KEY";
+const String titleTextFieldKey = "TITLE TEXT FIELD KEY";
+const String contentTextFieldKey = "CONTENT TEXT FIELD KEY";
 
 class InsertTodoScreen extends StatefulWidget {
   const InsertTodoScreen({Key key}) : super(key: key);
@@ -54,6 +56,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
               child: TextField(
+                key: Key(titleTextFieldKey),
                 controller: titleController,
                 decoration: InputDecoration(
                   hintText: "Title",
@@ -65,6 +68,7 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
               child: TextField(
+                key: Key(contentTextFieldKey),
                 controller: contentController,
                 decoration: InputDecoration(
                   hintText: "Content",
@@ -74,15 +78,15 @@ class _InsertTodoScreenState extends State<InsertTodoScreen> {
             ),
             SizedBox(height: 10),
             FlatButton(
+              key: Key(addButtonKey),
               onPressed: () async {
                 TodoModel todo = TodoModel(
                     id: Uuid().v1(),
-                    title: titleController.text ?? "Empty title",
-                    content: contentController.text ?? "Empty content");
+                    title: titleController.text,
+                    content: contentController.text);
                 changeNotifier.insertTodo(todo);
               },
               child: Container(
-                key: Key(addButtonKey),
                 color: Colors.blue,
                 height: 50,
                 child: Center(

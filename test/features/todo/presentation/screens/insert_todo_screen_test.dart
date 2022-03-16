@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'package:todo_list/features/todo/presentation/screens/insert_todo_screen.dart';
 
-class MockTodoChangeNotifier extends Mock implements TodoChangeNotifier {}
-
 void main() {
-  MockTodoChangeNotifier mockTodoChangeNotifier;
-  setUp(() {
-    mockTodoChangeNotifier = MockTodoChangeNotifier();
-  });
+  setUp(() {});
 
   Widget createWidgetUnderTest() => ChangeNotifierProvider(
       create: (_) => TodoChangeNotifier(),
@@ -36,10 +30,18 @@ void main() {
     expect(find.byType(TextField), findsNWidgets(2));
   });
 
-  testWidgets("the add button (container) is displayed", (WidgetTester tester) async {
+  testWidgets("the add button is displayed",
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
     expect(find.byKey(Key("ADD BUTTON KEY")), findsOneWidget);
+    expect(find.text("Add"), findsOneWidget);
   });
 
-
+  testWidgets("bla bla", (WidgetTester tester) async {
+    await tester.pumpWidget(createWidgetUnderTest());
+    await tester.pump();
+    await tester.tap(find.byKey(Key("ADD BUTTON KEY")));
+    await tester.pumpAndSettle();
+    expect(find.byKey(Key("ADD BUTTON KEY")), findsOneWidget);
+  });
 }
