@@ -33,7 +33,12 @@ class TodoChangeNotifier extends ChangeNotifier {
 
   Future<void> removeTodo(Todo todo) async {
     await removeTodoUsecase(todo);
-    _todos.remove(todo);
+    for (var t in _todos) {
+      if (t.id == todo.id) {
+        _todos.remove(t);
+        break;
+      }
+    }
     notifyListeners();
   }
 }
