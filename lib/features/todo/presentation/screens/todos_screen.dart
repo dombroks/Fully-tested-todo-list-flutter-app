@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'package:todo_list/features/todo/presentation/components/todo_widget.dart';
 
+const String progressIndicatorKey = "PROGRESS INDICATOR KEY";
+
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key key}) : super(key: key);
 
@@ -40,7 +42,9 @@ class _TodosScreenState extends State<TodosScreen> {
                 builder: (context, notifier, child) {
                   if (notifier.todos.length == 0) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        key: Key(progressIndicatorKey),
+                      ),
                     );
                   } else {
                     return ListView.builder(
