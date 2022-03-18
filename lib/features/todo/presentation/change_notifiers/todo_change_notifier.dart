@@ -30,4 +30,10 @@ class TodoChangeNotifier extends ChangeNotifier {
   Future<void> insertTodo(Todo todo) async {
     await insertTodoUsecase(todo);
   }
+
+  Future<void> removeTodo(Todo todo) async {
+    await removeTodoUsecase(todo);
+    _todos.remove(todo);
+    notifyListeners();
+  }
 }

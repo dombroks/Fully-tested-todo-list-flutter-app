@@ -27,7 +27,7 @@ class _TodosScreenState extends State<TodosScreen> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    var changeNotifier = Provider.of<TodoChangeNotifier>(context);
+    var changeNotifier = Provider.of<TodoChangeNotifier>(context, listen: true);
 
     return Scaffold(
         appBar: AppBar(
@@ -50,7 +50,7 @@ class _TodosScreenState extends State<TodosScreen> {
                     return ListView.builder(
                         itemCount: changeNotifier.todos.length,
                         itemBuilder: (BuildContext context, index) {
-                          final data = changeNotifier.todos;
+                          var data = changeNotifier.todos;
                           return TodoWidget(
                             todo: data[index],
                           );

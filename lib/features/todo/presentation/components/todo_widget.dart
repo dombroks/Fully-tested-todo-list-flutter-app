@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
+import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'package:todo_list/features/todo/presentation/screens/todo_screen.dart';
 
 class TodoWidget extends StatelessWidget {
@@ -38,7 +41,14 @@ class TodoWidget extends StatelessWidget {
                           size: 20,
                           color: Colors.grey,
                         ),
-                        onPressed: () {})
+                        onPressed: () {
+                          Provider.of<TodoChangeNotifier>(context,
+                                  listen: false)
+                              .removeTodo(TodoModel(
+                                  id: todo.id,
+                                  title: todo.title,
+                                  content: todo.content));
+                        })
                   ],
                 )
               ],
