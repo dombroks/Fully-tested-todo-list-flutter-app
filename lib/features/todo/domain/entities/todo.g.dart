@@ -8,10 +8,13 @@ part of 'todo.dart';
 
 class TodoAdapter extends TypeAdapter<Todo> {
   @override
+  final int typeId = 1;
+
+  @override
   Todo read(BinaryReader reader) {
-    var numOfFields = reader.readByte();
-    var fields = <int, dynamic>{
-      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Todo(
       id: fields[0] as String?,
@@ -33,5 +36,12 @@ class TodoAdapter extends TypeAdapter<Todo> {
   }
 
   @override
-  int get typeId => 1;
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TodoAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }

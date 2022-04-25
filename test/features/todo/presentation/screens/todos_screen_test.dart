@@ -11,20 +11,14 @@ import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart
 import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 
-class MockInsertTodoUsecase extends Mock implements InsertTodoUsecase {}
-
-class MockRemoveTodoUsecase extends Mock implements RemoveTodoUsecase {}
-
-class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
-
-class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
+import '../../../../../integration_test/app_test.dart';
 
 void main() {
-  TodoChangeNotifier? todoChangeNotifier;
-  MockGetAllTodosUsecase? mockGetAllTodosUsecase;
-  MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
-  MockInsertTodoUsecase mockInsertTodoUsecase;
-  MockRemoveTodoUsecase mockRemoveTodoUsecase;
+  late TodoChangeNotifier todoChangeNotifier;
+  late MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  late MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
+  late MockInsertTodoUsecase mockInsertTodoUsecase;
+  late MockRemoveTodoUsecase mockRemoveTodoUsecase;
   setUp(() {
     mockGetAllTodosUsecase = MockGetAllTodosUsecase();
     mockGetTodoByIdUsecase = MockGetTodoByIdUsecase();
@@ -49,7 +43,7 @@ void main() {
       ));
 
   testWidgets("appBar's title is displayed", (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
       return Result.completed(todos);
     });
 
@@ -60,7 +54,7 @@ void main() {
 
   testWidgets("loading indicator is displayed while loading the todos",
       (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
       await Future.delayed(const Duration(seconds: 2));
       return Result.completed(todos);
     });
@@ -73,7 +67,7 @@ void main() {
   });
 
   testWidgets("todos are displayed", (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
       return Result.completed(todos);
     });
 
