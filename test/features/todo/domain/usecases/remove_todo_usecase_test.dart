@@ -9,8 +9,8 @@ class MockTodoRepository extends Mock implements TodoRepository {}
 
 
 void main() {
-  MockTodoRepository mockTodoRepository;
-  RemoveTodoUsecase removeTodoUsecase;
+  MockTodoRepository? mockTodoRepository;
+  late RemoveTodoUsecase removeTodoUsecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();
@@ -21,14 +21,14 @@ void main() {
       Todo(id: "1", title: "test todo", content: "This is a test todo");
 
   test('should remove the todo item from repository', () async {
-    when(mockTodoRepository.removeTodo(todoItem))
+    when(mockTodoRepository!.removeTodo(todoItem))
         .thenAnswer((_) async => Result.completed("todo has been well removed"));
 
     final result = await removeTodoUsecase(todoItem);
 
     expect(result.data, "todo has been well removed");
 
-    verify(mockTodoRepository.removeTodo(todoItem));
+    verify(mockTodoRepository!.removeTodo(todoItem));
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

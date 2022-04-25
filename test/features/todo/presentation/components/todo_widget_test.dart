@@ -23,6 +23,6 @@ void main() {
   testWidgets("todo title is displayed", (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
-    expect(find.text(todo.title), findsOneWidget);
+    expect(find.text(todo.title!), findsOneWidget);
   });
 }

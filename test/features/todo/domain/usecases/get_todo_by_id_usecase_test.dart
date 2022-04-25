@@ -8,8 +8,8 @@ import 'package:todo_list/features/todo/domain/usecases/get_todo_by_id_usecase.d
 class MockTodoRepository extends Mock implements TodoRepository {}
 
 void main() {
-  MockTodoRepository mockTodoRepository;
-  GetTodoByIdUsecase getTodoByIdUsecase;
+  MockTodoRepository? mockTodoRepository;
+  late GetTodoByIdUsecase getTodoByIdUsecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();
@@ -21,14 +21,14 @@ void main() {
       Todo(id: todoId, title: "test todo", content: "This is a test todo");
 
   test('should get the todo item by its id from repository', () async {
-    when(mockTodoRepository.getTodoById(todoId)).thenAnswer(
+    when(mockTodoRepository!.getTodoById(todoId)).thenAnswer(
         (_) async => Result.completed(todoItem));
 
     final result = await getTodoByIdUsecase(todoId);
 
     expect(result.data, todoItem);
 
-    verify(mockTodoRepository.getTodoById(todoId));
+    verify(mockTodoRepository!.getTodoById(todoId));
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

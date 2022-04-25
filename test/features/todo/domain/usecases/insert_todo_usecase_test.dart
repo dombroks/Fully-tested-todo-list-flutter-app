@@ -8,8 +8,8 @@ import 'package:todo_list/features/todo/domain/usecases/insert_todo_usecase.dart
 class MockTodoRepository extends Mock implements TodoRepository {}
 
 void main() {
-  MockTodoRepository mockTodoRepository;
-  InsertTodoUsecase insertTodoUsecase;
+  MockTodoRepository? mockTodoRepository;
+  late InsertTodoUsecase insertTodoUsecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();
@@ -20,14 +20,14 @@ void main() {
       Todo(id: "1", title: "test todo", content: "This is a test todo");
 
   test('should insert the todo item to repository', () async {
-    when(mockTodoRepository.insertTodo(todoItem))
+    when(mockTodoRepository!.insertTodo(todoItem))
         .thenAnswer((_) async => Result.completed(1));
 
     final result = await insertTodoUsecase(todoItem);
 
     expect(result.data, 1);
 
-    verify(mockTodoRepository.insertTodo(todoItem));
+    verify(mockTodoRepository!.insertTodo(todoItem));
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

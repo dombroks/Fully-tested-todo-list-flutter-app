@@ -8,8 +8,8 @@ import 'package:todo_list/features/todo/domain/usecases/get_all_todos_usecase.da
 class MockTodoRepository extends Mock implements TodoRepository {}
 
 void main() {
-  MockTodoRepository mockTodoRepository;
-  GetAllTodosUsecase getAllTodosUsecase;
+  MockTodoRepository? mockTodoRepository;
+  late GetAllTodosUsecase getAllTodosUsecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();
@@ -22,14 +22,14 @@ void main() {
     ];
 
   test('should get all the todos from repository', () async {
-    when(mockTodoRepository.getAllTodos()).thenAnswer(
+    when(mockTodoRepository!.getAllTodos()).thenAnswer(
         (_) async => Result.completed(todos));
 
     final result = await getAllTodosUsecase();
 
     expect(result.data, todos);
 
-    verify(mockTodoRepository.getAllTodos());
+    verify(mockTodoRepository!.getAllTodos());
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

@@ -21,8 +21,8 @@ class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
 class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
 
 void main() {
-  TodoChangeNotifier todoChangeNotifier;
-  MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  TodoChangeNotifier? todoChangeNotifier;
+  MockGetAllTodosUsecase? mockGetAllTodosUsecase;
   MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
   MockInsertTodoUsecase mockInsertTodoUsecase;
   MockRemoveTodoUsecase mockRemoveTodoUsecase;
@@ -51,7 +51,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump();
-    when(mockGetAllTodosUsecase()).thenAnswer((_) async =>
+    when(mockGetAllTodosUsecase!()).thenAnswer((_) async =>
         Result.completed([Todo(id: "1", title: "title", content: "content")]));
     await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();

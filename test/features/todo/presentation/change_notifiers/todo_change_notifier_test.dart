@@ -17,12 +17,12 @@ class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
 class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
 
 void main() {
-  MockInsertTodoUsecase mockInsertTodoUsecase;
-  MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  MockInsertTodoUsecase? mockInsertTodoUsecase;
+  MockGetAllTodosUsecase? mockGetAllTodosUsecase;
   MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
   MockRemoveTodoUsecase mockRemoveTodoUsecase;
 
-  TodoChangeNotifier todoChangeNotifier;
+  late TodoChangeNotifier todoChangeNotifier;
 
   setUp(() {
     mockGetAllTodosUsecase = MockGetAllTodosUsecase();
@@ -45,16 +45,16 @@ void main() {
 
   test("insertTodo should be called succesfully", () async {
     await todoChangeNotifier.insertTodo(tTodo);
-    verify(mockInsertTodoUsecase(tTodo));
+    verify(mockInsertTodoUsecase!(tTodo));
     verifyNoMoreInteractions(mockInsertTodoUsecase);
   });
 
   test("getAllTodos should return data succesfully", () async {
-    when(mockGetAllTodosUsecase())
+    when(mockGetAllTodosUsecase!())
         .thenAnswer((_) async => Result.completed([tTodo]));
     await todoChangeNotifier.getAllTodos();
     expect(todoChangeNotifier.todos, [tTodo]);
-    verify(mockGetAllTodosUsecase());
+    verify(mockGetAllTodosUsecase!());
     verifyNoMoreInteractions(mockGetAllTodosUsecase);
   });
 }

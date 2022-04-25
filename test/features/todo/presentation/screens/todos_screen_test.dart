@@ -20,8 +20,8 @@ class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
 class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
 
 void main() {
-  TodoChangeNotifier todoChangeNotifier;
-  MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  TodoChangeNotifier? todoChangeNotifier;
+  MockGetAllTodosUsecase? mockGetAllTodosUsecase;
   MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
   MockInsertTodoUsecase mockInsertTodoUsecase;
   MockRemoveTodoUsecase mockRemoveTodoUsecase;
@@ -49,7 +49,7 @@ void main() {
       ));
 
   testWidgets("appBar's title is displayed", (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
       return Result.completed(todos);
     });
 
@@ -60,7 +60,7 @@ void main() {
 
   testWidgets("loading indicator is displayed while loading the todos",
       (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
       await Future.delayed(const Duration(seconds: 2));
       return Result.completed(todos);
     });
@@ -73,14 +73,14 @@ void main() {
   });
 
   testWidgets("todos are displayed", (WidgetTester tester) async {
-    when(mockGetAllTodosUsecase()).thenAnswer((_) async {
+    when(mockGetAllTodosUsecase!()).thenAnswer((_) async {
       return Result.completed(todos);
     });
 
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(find.text(todos[0].title), findsOneWidget);
-    expect(find.text(todos[1].title), findsOneWidget);
+    expect(find.text(todos[0].title!), findsOneWidget);
+    expect(find.text(todos[1].title!), findsOneWidget);
   });
 }
