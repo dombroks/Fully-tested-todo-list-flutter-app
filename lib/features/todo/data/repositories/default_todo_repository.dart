@@ -5,11 +5,11 @@ import 'package:todo_list/features/todo/domain/repositories/todo_repository.dart
 
 import '../models/TodoModel.dart';
 
-
 class DefaultTodoRepository implements TodoRepository {
   final LocalDataSource? localDataSource;
 
   DefaultTodoRepository(this.localDataSource);
+
   @override
   Future<Result> getTodoById(String id) {
     return localDataSource!.getTodoById(id);

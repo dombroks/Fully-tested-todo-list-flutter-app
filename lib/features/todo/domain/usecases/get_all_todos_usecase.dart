@@ -6,8 +6,5 @@ class GetAllTodosUsecase {
 
   GetAllTodosUsecase(this.todoRepository);
 
-  Future<Result> call() async {
-    final data = await todoRepository!.getAllTodos();
-    return data;
-  }
+  Future<Result> call() async => todoRepository!.getAllTodos();
 }
