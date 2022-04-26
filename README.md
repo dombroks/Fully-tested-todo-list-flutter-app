@@ -1,10 +1,10 @@
-# todo_list
+![Codemagic build status](https://api.codemagic.io/apps/62674993eb4a9ace2124b774/62674993eb4a9ace2124b773/status_badge.svg)
+# Todo App using Clean architecture and TDD
 
 A new Flutter project.
 
-## Getting Started
-[![Codemagic build status](https://api.codemagic.io/apps/62674993eb4a9ace2124b774/62674993eb4a9ace2124b773/status_badge.svg)](https://codemagic.io/apps/62674993eb4a9ace2124b774/62674993eb4a9ace2124b773/latest_build)
-This project is a starting point for a Flutter application.
+## Project description
+A simple app that allows the user to store and retreive todos (tasks to do). 
 
 A few resources to get you started if this is your first Flutter project:
 
