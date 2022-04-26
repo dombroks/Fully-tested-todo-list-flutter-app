@@ -33,7 +33,7 @@ void main() {
 
     expect(result.data, todos);
 
-    verify(mockTodoRepository!.getAllTodos());
+    verify(mockTodoRepository.getAllTodos());
     verifyNoMoreInteractions(mockTodoRepository);
   });
 }

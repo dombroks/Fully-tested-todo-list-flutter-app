@@ -10,13 +10,8 @@ import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart
 import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 
 import '../../../../../integration_test/app_test.dart';
+import 'todo_change_notifier_test.mocks.dart';
 
-@GenerateMocks([
-  InsertTodoUsecase,
-  RemoveTodoUsecase,
-  GetAllTodosUsecase,
-  GetTodoByIdUsecase
-])
 void main() {
   late MockInsertTodoUsecase mockInsertTodoUsecase;
   late MockGetAllTodosUsecase mockGetAllTodosUsecase;
@@ -45,6 +40,8 @@ void main() {
   Todo tTodo = Todo(id: "100", title: "test title", content: "test content");
 
   test("insertTodo should be called successfully", () async {
+    when(mockInsertTodoUsecase(tTodo))
+        .thenAnswer((_) async => Result.completed(tTodo.id));
     await todoChangeNotifier.insertTodo(tTodo);
     verify(mockInsertTodoUsecase(tTodo));
     verifyNoMoreInteractions(mockInsertTodoUsecase);

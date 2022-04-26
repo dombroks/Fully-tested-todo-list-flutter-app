@@ -12,20 +12,15 @@ import 'package:todo_list/features/todo/presentation/change_notifiers/todo_chang
 import 'package:todo_list/features/todo/presentation/screens/insert_todo_screen.dart';
 import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 
-class MockInsertTodoUsecase extends Mock implements InsertTodoUsecase {}
+import '../test/features/todo/presentation/change_notifiers/todo_change_notifier_test.mocks.dart';
 
-class MockRemoveTodoUsecase extends Mock implements RemoveTodoUsecase {}
-
-class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
-
-class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
 
 void main() {
-  TodoChangeNotifier? todoChangeNotifier;
-  MockGetAllTodosUsecase? mockGetAllTodosUsecase;
-  MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
-  MockInsertTodoUsecase mockInsertTodoUsecase;
-  MockRemoveTodoUsecase mockRemoveTodoUsecase;
+  late TodoChangeNotifier todoChangeNotifier;
+  late MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  late MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
+  late MockInsertTodoUsecase mockInsertTodoUsecase;
+  late MockRemoveTodoUsecase mockRemoveTodoUsecase;
   setUp(() {
     mockGetAllTodosUsecase = MockGetAllTodosUsecase();
     mockGetTodoByIdUsecase = MockGetTodoByIdUsecase();
@@ -51,7 +46,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump();
-    when(mockGetAllTodosUsecase!()).thenAnswer((_) async =>
+    when(mockGetAllTodosUsecase()).thenAnswer((_) async =>
         Result.completed([Todo(id: "1", title: "title", content: "content")]));
     await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();

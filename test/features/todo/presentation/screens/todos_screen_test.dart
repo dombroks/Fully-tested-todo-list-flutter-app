@@ -12,6 +12,7 @@ import 'package:todo_list/features/todo/presentation/change_notifiers/todo_chang
 import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 
 import '../../../../../integration_test/app_test.dart';
+import '../change_notifiers/todo_change_notifier_test.mocks.dart';
 
 void main() {
   late TodoChangeNotifier todoChangeNotifier;
