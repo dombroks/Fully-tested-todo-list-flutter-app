@@ -10,4 +10,5 @@ The app was built using:
 - Unit, widget and integration tests.
 - GetIt for dependency injection.
 - CI/CD pipeline using Codemagic.
+- Code coverage with Codecov.
 
