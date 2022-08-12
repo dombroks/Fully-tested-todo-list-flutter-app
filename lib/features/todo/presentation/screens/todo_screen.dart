@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/features/todo/domain/entities/todo.dart';
 
 class TodoScreen extends StatefulWidget {
-  final Todo todo;
-  const TodoScreen({Key key, this.todo}) : super(key: key);
+  final Todo? todo;
+  const TodoScreen({Key? key, this.todo}) : super(key: key);
 
   @override
   _TodoScreenState createState() => _TodoScreenState();
@@ -34,7 +34,7 @@ class _TodoScreenState extends State<TodoScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Expanded(child: Text(widget.todo.title))
+                      Expanded(child: Text(widget.todo!.title!))
                     ],
                   ),
                 ),
@@ -52,7 +52,7 @@ class _TodoScreenState extends State<TodoScreen> {
                       ),
                       Expanded(
                           child: Text(
-                        widget.todo.content,
+                        widget.todo!.content!,
                       ))
                     ],
                   ),

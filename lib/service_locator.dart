@@ -35,7 +35,7 @@ Future<void> init() async {
 
 
   // Data sources
-  sl.registerLazySingleton<LocalDataSource>(() => DefaulLocalDataSource(sl()));
+  sl.registerLazySingleton<LocalDataSource>(() => DefaultLocalDataSource(sl()));
 
   // Repositories
   sl.registerLazySingleton<TodoRepository>(() => DefaultTodoRepository(sl()));

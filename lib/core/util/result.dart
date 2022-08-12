@@ -1,7 +1,7 @@
 class Result<T> {
   Status status;
-  T data;
-  String message;
+  T? data;
+  String? message;
 
   Result.loading(this.message) : status = Status.LOADING;
   Result.error(this.message) : status = Status.ERROR;

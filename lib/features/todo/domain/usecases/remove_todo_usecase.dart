@@ -3,11 +3,11 @@ import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/domain/repositories/todo_repository.dart';
 
 class RemoveTodoUsecase {
-  final TodoRepository todoRepository;
+  final TodoRepository? todoRepository;
 
   RemoveTodoUsecase(this.todoRepository);
 
   Future<Result> call(Todo todo) async{
-    return await todoRepository.removeTodo(todo);
+    return await todoRepository!.removeTodo(todo);
   }
 }

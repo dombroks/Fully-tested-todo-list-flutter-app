@@ -10,7 +10,7 @@ const String titleTextFieldKey = "TITLE TEXT FIELD KEY";
 const String contentTextFieldKey = "CONTENT TEXT FIELD KEY";
 
 class InsertTodoScreen extends StatefulWidget {
-  const InsertTodoScreen({Key key}) : super(key: key);
+  const InsertTodoScreen({Key? key}) : super(key: key);
 
   @override
   _InsertTodoScreenState createState() => _InsertTodoScreenState();

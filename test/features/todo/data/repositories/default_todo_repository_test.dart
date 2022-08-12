@@ -1,23 +1,27 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:todo_list/core/util/result.dart';
 import 'package:todo_list/features/todo/data/data_sources/local/local_data_source.dart';
 import 'package:todo_list/features/todo/data/models/TodoModel.dart';
 import 'package:todo_list/features/todo/data/repositories/default_todo_repository.dart';
 
-class MockLocalDataSource extends Mock implements DefaulLocalDataSource {}
+import 'default_todo_repository_test.mocks.dart';
 
+@GenerateMocks([DefaultLocalDataSource])
 void main() {
-  DefaultTodoRepository defaultTodoRepository;
-  MockLocalDataSource mockLocalDataSource;
+  late DefaultTodoRepository defaultTodoRepository;
+  late MockDefaultLocalDataSource mockLocalDataSource;
 
   setUp(() {
-    mockLocalDataSource = MockLocalDataSource();
+    mockLocalDataSource = MockDefaultLocalDataSource();
     defaultTodoRepository = DefaultTodoRepository(mockLocalDataSource);
   });
 
   final TodoModel tTodoModel = TodoModel(
-      id: "1", title: "this is a test title", content: "this is a test content");
+      id: "1",
+      title: "this is a test title",
+      content: "this is a test content");
 
   test('getTodoById should return a model', () async {
     when(mockLocalDataSource.getTodoById("1"))
@@ -31,8 +35,8 @@ void main() {
   });
 
   test('removeTodo should work successfully', () async {
-    when(mockLocalDataSource.removeTodo(tTodoModel))
-        .thenAnswer((_) async => Result.completed("Todo has been well removed"));
+    when(mockLocalDataSource.removeTodo(tTodoModel)).thenAnswer(
+        (_) async => Result.completed("Todo has been well removed"));
 
     final result = await defaultTodoRepository.removeTodo(tTodoModel);
 
@@ -52,8 +56,8 @@ void main() {
     verifyNoMoreInteractions(mockLocalDataSource);
   });
 
-   test('getAllTodos should return all the records', () async {
-      List<TodoModel> todos = [
+  test('getAllTodos should return all the records', () async {
+    List<TodoModel> todos = [
       TodoModel(id: "1", title: "title", content: "content"),
       TodoModel(id: "1", title: "title", content: "content")
     ];

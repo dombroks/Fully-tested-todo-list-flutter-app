@@ -29,8 +29,8 @@ void main() {
     expect(find.text("Title: "), findsWidgets);
     expect(find.text("Content: "), findsWidgets);
 
-    expect(find.text(todo.title), findsOneWidget);
-    expect(find.text(todo.content), findsOneWidget);
+    expect(find.text(todo.title!), findsOneWidget);
+    expect(find.text(todo.content!), findsOneWidget);
 
     await tester.pumpAndSettle();
   });

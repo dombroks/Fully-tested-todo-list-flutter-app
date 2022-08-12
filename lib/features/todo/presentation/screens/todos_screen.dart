@@ -6,7 +6,7 @@ import 'package:todo_list/features/todo/presentation/components/todo_widget.dart
 const String progressIndicatorKey = "PROGRESS INDICATOR KEY";
 
 class TodosScreen extends StatefulWidget {
-  const TodosScreen({Key key}) : super(key: key);
+  const TodosScreen({Key? key}) : super(key: key);
 
   @override
   _TodosScreenState createState() => _TodosScreenState();

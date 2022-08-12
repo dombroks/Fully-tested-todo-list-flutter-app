@@ -6,8 +6,8 @@ import 'package:todo_list/features/todo/presentation/change_notifiers/todo_chang
 import 'package:todo_list/features/todo/presentation/screens/todo_screen.dart';
 
 class TodoWidget extends StatelessWidget {
-  final Todo todo;
-  const TodoWidget({Key key, this.todo}) : super(key: key);
+  final Todo? todo;
+  const TodoWidget({Key? key, this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class TodoWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      todo.title,
+                      todo!.title!,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     IconButton(
@@ -45,9 +45,9 @@ class TodoWidget extends StatelessWidget {
                           Provider.of<TodoChangeNotifier>(context,
                                   listen: false)
                               .removeTodo(TodoModel(
-                                  id: todo.id,
-                                  title: todo.title,
-                                  content: todo.content));
+                                  id: todo!.id,
+                                  title: todo!.title,
+                                  content: todo!.content));
                         })
                   ],
                 )

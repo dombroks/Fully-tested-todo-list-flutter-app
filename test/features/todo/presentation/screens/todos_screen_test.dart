@@ -11,20 +11,15 @@ import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart
 import 'package:todo_list/features/todo/presentation/change_notifiers/todo_change_notifier.dart';
 import 'package:todo_list/features/todo/presentation/screens/todos_screen.dart';
 
-class MockInsertTodoUsecase extends Mock implements InsertTodoUsecase {}
-
-class MockRemoveTodoUsecase extends Mock implements RemoveTodoUsecase {}
-
-class MockGetAllTodosUsecase extends Mock implements GetAllTodosUsecase {}
-
-class MockGetTodoByIdUsecase extends Mock implements GetTodoByIdUsecase {}
+import '../../../../../integration_test/app_test.dart';
+import '../change_notifiers/todo_change_notifier_test.mocks.dart';
 
 void main() {
-  TodoChangeNotifier todoChangeNotifier;
-  MockGetAllTodosUsecase mockGetAllTodosUsecase;
-  MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
-  MockInsertTodoUsecase mockInsertTodoUsecase;
-  MockRemoveTodoUsecase mockRemoveTodoUsecase;
+  late TodoChangeNotifier todoChangeNotifier;
+  late MockGetAllTodosUsecase mockGetAllTodosUsecase;
+  late MockGetTodoByIdUsecase mockGetTodoByIdUsecase;
+  late MockInsertTodoUsecase mockInsertTodoUsecase;
+  late MockRemoveTodoUsecase mockRemoveTodoUsecase;
   setUp(() {
     mockGetAllTodosUsecase = MockGetAllTodosUsecase();
     mockGetTodoByIdUsecase = MockGetTodoByIdUsecase();
@@ -80,7 +75,7 @@ void main() {
     await tester.pumpWidget(createWidgetUnderTest());
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(find.text(todos[0].title), findsOneWidget);
-    expect(find.text(todos[1].title), findsOneWidget);
+    expect(find.text(todos[0].title!), findsOneWidget);
+    expect(find.text(todos[1].title!), findsOneWidget);
   });
 }

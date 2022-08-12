@@ -5,12 +5,12 @@ import 'package:todo_list/features/todo/domain/entities/todo.dart';
 import 'package:todo_list/features/todo/domain/repositories/todo_repository.dart';
 import 'package:todo_list/features/todo/domain/usecases/remove_todo_usecase.dart';
 
-class MockTodoRepository extends Mock implements TodoRepository {}
+import 'get_all_todos_usecase_test.mocks.dart';
 
 
 void main() {
-  MockTodoRepository mockTodoRepository;
-  RemoveTodoUsecase removeTodoUsecase;
+  late MockTodoRepository mockTodoRepository;
+  late RemoveTodoUsecase removeTodoUsecase;
 
   setUp(() {
     mockTodoRepository = MockTodoRepository();

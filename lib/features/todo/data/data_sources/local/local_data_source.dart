@@ -10,29 +10,29 @@ abstract class LocalDataSource {
   Future<Result> getAllTodos();
 }
 
-class DefaulLocalDataSource implements LocalDataSource {
-  final HiveInterface hiveInterface;
+class DefaultLocalDataSource implements LocalDataSource {
+  final HiveInterface? hiveInterface;
 
-  DefaulLocalDataSource(this.hiveInterface);
+  DefaultLocalDataSource(this.hiveInterface);
 
   @override
-  Future<Result> getTodoById(String id) async {
-    final todoBox = await hiveInterface.openBox("TodoBox");
+  Future<Result> getTodoById(String? id) async {
+    final todoBox = await hiveInterface!.openBox("TodoBox");
 
     final todo = await todoBox.get(id);
-    return Result.completed(todo as Todo);
+    return Result.completed(todo as Todo?);
   }
 
   @override
   Future<Result> insertTodo(TodoModel todo) async {
-    final todoBox = await hiveInterface.openBox("TodoBox");
+    final todoBox = await hiveInterface!.openBox("TodoBox");
     todoBox.put(todo.id, todo);
     return Result.completed(todo.id);
   }
 
   @override
   Future<Result> removeTodo(TodoModel todo) async {
-    final todoBox = await hiveInterface.openBox("TodoBox");
+    final todoBox = await hiveInterface!.openBox("TodoBox");
 
     await todoBox.delete(todo.id);
     return Result.completed("Todo has been well removed");
@@ -40,7 +40,7 @@ class DefaulLocalDataSource implements LocalDataSource {
 
   @override
   Future<Result> getAllTodos() async {
-    final todoBox = await hiveInterface.openBox("TodoBox");
+    final todoBox = await hiveInterface!.openBox("TodoBox");
 
     final todos = todoBox.values.toList().cast<Todo>();
 
