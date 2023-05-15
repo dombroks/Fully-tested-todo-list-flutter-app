@@ -4,8 +4,6 @@
 ## Description
 
 This is a Flutter mobile application built with clean architecture and MVVM design pattern. It includes unit, widget, and integration tests and uses Provider for state management, Hive for local storage, and GetIt for dependency injection. The app has a CI/CD pipeline using Codemagic and code coverage is tracked with Codecov.
-Technologies
-Provider
 
 ### Provider 
 Provider is a state management solution for Flutter applications. It simplifies the process of managing application state by allowing you to create and update state objects in one central location, which can then be accessed by any part of your application.
